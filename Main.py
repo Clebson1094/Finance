@@ -2,6 +2,7 @@ from config import Calculator
 
 calc = Calculator()
 
-new_value = calc.config()
+while True:
+    carteira = calc.config()
 
-print(f"Saldo atual: {new_value}")
+    print(f"Saldo atual: {carteira}")

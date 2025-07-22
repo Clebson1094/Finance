@@ -1,8 +1,8 @@
 class Calculator():
-
+    
     def __init__(self):   
         self.balance = 0
-   
+    
     def config(self):
         try:
             function = int(input("Options:\n[1]Add Value to your Balance\n[2]Include expense\nEnter: "))
@@ -15,5 +15,5 @@ class Calculator():
                 case _:
                     print("Please select only the options")
         except ValueError:
-            print("oi")
+            print("nn")
         return self.balance
