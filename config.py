@@ -28,13 +28,11 @@ class Calculator():
                 self.balance += valor
             case "EXIT":
                 self.balance -= valor
-            case _:
-                print("Please select only the options")
 
     def show_debts(self):
-        print("Debts")
+        print("TABLE")
         for debt in self.debts:
-            print(f"Name: {debt['name']}, Type: {debt['type']}, Value: {debt['value']}")
+            print(f"Name: {debt['name']} | Type: {debt['type']} | Value: R$:{debt['value']:.2f}")
         print(f"Final Balance: {self.balance} ")
 
         return self.balance, self.debts
