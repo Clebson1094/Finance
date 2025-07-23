@@ -1,8 +1,7 @@
 from config import Calculator
 
-calc = Calculator()
+calc = Calculator() #chamando a classe
 
 while True:
-    carteira = calc.config()
-
-    print(f"Saldo atual: {carteira}")
+    calc.debt() #chamando as funções que estão dentro da Classe
+    calc.show_debts()

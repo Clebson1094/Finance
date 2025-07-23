@@ -2,18 +2,39 @@ class Calculator():
     
     def __init__(self):   
         self.balance = 0
-    
-    def config(self):
+        self.debts = []
+
+    def debt(self):
+        nome = str(input("Enter name "))
+        tipo = str(input("Entry or Exit: ")).upper()
+
+        if tipo not in ["ENTRY", "EXIT"]:
+            print("Select only (ENTRY) or (EXIT)")
+            return self.balance, self.debts
+
         try:
-            function = int(input("Options:\n[1]Add Value to your Balance\n[2]Include expense\nEnter: "))
-            value = float(input("Enter your value\nEnter R$:"))
-            match function:
-                case 1:
-                    self.balance += value
-                case 2:
-                    self.balance -= value
-                case _:
-                    print("Please select only the options")
+            valor = float(input("Enter value: "))
+            if valor <= 0:
+                print("The value most be positive")
+                return self.balance, self.debts
         except ValueError:
-            print("nn")
-        return self.balance
+            print("Invalid value, please select valid value")
+            return self.balance, self.debts
+
+        self.debts.append({"name": nome, "type": tipo, "value": valor})
+        
+        match tipo:
+            case "ENTRY":
+                self.balance += valor
+            case "EXIT":
+                self.balance -= valor
+            case _:
+                print("Please select only the options")
+
+    def show_debts(self):
+        print("Debts")
+        for debt in self.debts:
+            print(f"Name: {debt['name']}, Type: {debt['type']}, Value: {debt['value']}")
+        print(f"Final Balance: {self.balance} ")
+
+        return self.balance, self.debts
