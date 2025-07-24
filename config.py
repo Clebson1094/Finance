@@ -1,11 +1,11 @@
 class Calculator():
-    
-    def __init__(self):   
+
+    def __init__(self):
         self.balance = 0
         self.debts = []
 
     def debt(self, nome, tipo):
-        
+
         if tipo not in ["ENTRY", "EXIT"]:
             print("Select only (ENTRY) or (EXIT)")
             return self.balance, self.debts
@@ -26,7 +26,11 @@ class Calculator():
                 self.balance += valor
             case "EXIT":
                 self.balance -= valor
-    
+
+    def planning_dream(self, balance, months):
+
+        idea = balance / months
+        result = idea * 30 / 100
 
     def show_debts(self):
         print("TABLE")
@@ -35,3 +39,5 @@ class Calculator():
         print(f"Final Balance: {self.balance} ")
 
         return self.balance, self.debts
+    
+    
