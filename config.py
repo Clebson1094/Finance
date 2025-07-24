@@ -4,10 +4,8 @@ class Calculator():
         self.balance = 0
         self.debts = []
 
-    def debt(self):
-        nome = str(input("Enter name "))
-        tipo = str(input("Entry or Exit: ")).upper()
-
+    def debt(self, nome, tipo):
+        
         if tipo not in ["ENTRY", "EXIT"]:
             print("Select only (ENTRY) or (EXIT)")
             return self.balance, self.debts
@@ -15,19 +13,20 @@ class Calculator():
         try:
             valor = float(input("Enter value: "))
             if valor <= 0:
-                print("The value most be positive")
+                print("The value must be positive")
                 return self.balance, self.debts
         except ValueError:
             print("Invalid value, please select valid value")
             return self.balance, self.debts
 
         self.debts.append({"name": nome, "type": tipo, "value": valor})
-        
+
         match tipo:
             case "ENTRY":
                 self.balance += valor
             case "EXIT":
                 self.balance -= valor
+    
 
     def show_debts(self):
         print("TABLE")
