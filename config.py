@@ -27,10 +27,12 @@ class Calculator():
             case "EXIT":
                 self.balance -= valor
 
-    def planning_dream(self, balance, months):
+    def planning_dream(self, value_dream, months, balance):
 
-        idea = balance / months
-        result = idea * 30 / 100
+        real_dream = value_dream / months
+        recommendation = value_dream / (balance * 30 / 100)
+        print(f"To reach you goal {real_dream:.2f} for month")
+        print(f"For safety i recommend {balance * 30 / 100:.2f} for month, during {recommendation:.2f}")
 
     def show_debts(self):
         print("TABLE")
