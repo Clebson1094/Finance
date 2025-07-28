@@ -5,7 +5,6 @@ class Calculator():
         self.debts = []
 
     def debt(self, nome, tipo):
-
         if tipo not in ["ENTRY", "EXIT"]:
             print("Select only (ENTRY) or (EXIT)")
             return self.balance, self.debts
@@ -17,9 +16,7 @@ class Calculator():
         except ValueError:
             print("Invalid value, please select valid value")
             return self.balance, self.debts
-
         self.debts.append({"name": nome, "type": tipo, "value": valor})
-
         match tipo:
             case "ENTRY":
                 self.balance += valor
@@ -27,7 +24,6 @@ class Calculator():
                 self.balance -= valor
 
     def planning_dream(self, value_dream, months, balance):
-
         real_dream = value_dream / months
         recommendation = value_dream / (balance * 30 / 100)
         if recommendation > real_dream:
@@ -37,12 +33,8 @@ class Calculator():
             print(f"To reach you goal {real_dream:.2f} for month")
     
     def options(self, choice):
-        while True:
-            if choice not in [1, 2, 3]:
-                print("Please, choose a valid option: ")
-            else:
-                break
-            return choice
+        if choice not in [1, 2, 3]:
+            print("Please, choose a valid option: ")
         match choice:
             case 1:
                 nome = str(input("Enter name "))
