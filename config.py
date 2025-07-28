@@ -31,7 +31,7 @@ class Calculator():
             print(f"For safety i recommend {balance * 30 / 100:.2f} for month, during {recommendation:.2f}")
         else:
             print(f"To reach you goal {real_dream:.2f} for month")
-    
+
     def options(self, choice):
         if choice not in [1, 2, 3]:
             print("Please, choose a valid option: ")
