@@ -12,29 +12,20 @@ class Calculator():
         elif nome in self.exit:
             tipo = "EXIT"
         else: #REGISTRA UM NOVO TIPO DE DÉBITO CASO NÃO TENHA
-            option = str(input(f"{nome} is ENTRY or EXIT? ")).upper().strip()
-            if option == "ENTRY":
-                tipo = "ENTRY"
-                self.entry.append(nome)
-                print(f"{nome} Registration completed successfully in ENTRY")
-            elif option == "EXIT":
-                tipo = "EXIT"
-                self.exit.append(nome)
-                print(f"{nome} Registration completed successfully in EXIT")
-            else:
-                print("Please choose only the options provided")
-            return self.exit, self.entry
+            tipo = self.cadastro(nome)
         valor = float(input("Enter value: "))
         if valor <= 0:
             print("The value must be positive")
             return self.balance, self.debts
         self.debts.append({"name": nome, "type": tipo, "value": valor})
+        print("Successfully registered")
         match tipo:
             case "ENTRY":
                 self.balance += valor
             case "EXIT":
                 self.balance -= valor
-
+        return self.balance, self.debts
+    
     def planning_dream(self, value_dream, months, balance):
         real_dream = value_dream / months
         recommendation = value_dream / (balance * 30 / 100)
@@ -53,3 +44,31 @@ class Calculator():
             return self.balance, self.debts
         else:
             print("No items in your financial table 😢")
+
+    def cadastro(self, nome):
+        option = str(input(f"{nome} is ENTRY or EXIT? ")).upper().strip()
+        if option == "ENTRY":
+            tipo = "ENTRY"
+            self.entry.append(nome)
+            print(f"{nome} Registration completed successfully in ENTRY")
+            return tipo
+        elif option == "EXIT":
+            tipo = "EXIT"
+            self.exit.append(nome) 
+            print(f"{nome} Registration completed successfully in EXIT")
+            return tipo
+        else:
+            print("Please choose only the options provided")
+        return self.exit, self.entry
+
+    def remove_debt(self, nome):
+        for debt in self.debts:
+            if debt['name'] == nome:
+                if debt['type'] == "ENTRY":
+                    self.balance -= debt['value']
+                elif debt['type'] == "EXIT":
+                    self.balance += debt['value']
+                self.debts.remove(debt)
+                print(f"{nome} removed successfully")
+            else:
+                print(f"{nome} not found in your debts")
